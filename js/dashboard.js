@@ -27,7 +27,7 @@ if(savedCategory !== null){
 }
 
 //  CALORIES
-//  CALORIES (EATEN / TARGET)
+//  CALORIES (eaten / Target)
 let eaten= Number(localStorage.getItem("caloriesEaten")) || 0;
 let target= Number(localStorage.getItem("calories")) || 0;
 
@@ -65,49 +65,3 @@ if(savedWater !== null){
     document.getElementById("water").textContent= "0 / 8";
 }
 
-//  RECOMMENDATION
-const recommendation =
-document.getElementById("recommendation");
-
-if (category === "Underweight") {
-
-    recommendation.innerHTML = `
-        <h3>Recommended Foods</h3>
-        <ul>
-            <li>Chicken Breast</li>
-            <li>Eggs</li>
-            <li>Milk</li>
-            <li>Peanut Butter</li>
-            <li>Rice</li>
-        </ul>
-    `;
-
-}
-else if (category === "Normal") {
-
-    recommendation.innerHTML = `
-        <h3>Recommended Foods</h3>
-        <ul>
-            <li>Vegetables</li>
-            <li>Fruits</li>
-            <li>Whole Grains</li>
-            <li>Fish</li>
-            <li>Lean Meat</li>
-        </ul>
-    `;
-
-}
-else {
-
-    recommendation.innerHTML = `
-        <h3>Recommended Foods</h3>
-        <ul>
-            <li>Salads</li>
-            <li>Oatmeal</li>
-            <li>Greek Yogurt</li>
-            <li>Chicken Breast</li>
-            <li>Vegetables</li>
-        </ul>
-    `;
-
-}
