@@ -28,7 +28,7 @@ function toggleFavorite(){
         // REMOVE STARRED FOODS
         favorites= favorites.filter(item => item.description !== currentFood.description);
     } else{
-        // SAVE STARRED FOODS
+        // SAVE
         favorites.push(currentFood);
     }
 
