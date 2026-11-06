@@ -27,7 +27,7 @@ if(savedCategory !== null){
 }
 
 //  CALORIES
-//  CALORIES (eaten / Target)
+//  CALORIES (eaten / Target )
 let eaten= Number(localStorage.getItem("caloriesEaten")) || 0;
 let target= Number(localStorage.getItem("calories")) || 0;
 
@@ -65,3 +65,39 @@ if(savedWater !== null){
     document.getElementById("water").textContent= "0 / 8";
 }
 
+//  RECOMMENDATION  //
+
+let recommendation= document.getElementById("recommendation");
+
+//  FOOD LISTS FOR EACH BMI CATEGORY
+let foodLists= {
+    Underweight: ["Chicken Breast", "Eggs", "Milk", "Peanut Butter", "Rice"],
+    Normal: ["Vegetables", "Fruits", "Whole Grains", "Fish", "Lean Meat"],
+    Overweight: ["Salads", "Oatmeal", "Greek Yogurt", "Chicken Breast", "Vegetables"]
+};
+
+//  OBESE USES THE SAME LIST AS OVERWEIGHT
+foodLists.Obese= foodLists.Overweight;
+
+//  SHOW RECOMMENDATION
+if(savedCategory !== null && foodLists[savedCategory]){
+
+    recommendation.innerHTML= "";
+
+    let title= document.createElement("h3");
+    title.textContent= "Recommended Foods";
+    recommendation.appendChild(title);
+
+    let list= document.createElement("ul");
+
+    foodLists[savedCategory].forEach(food => {
+        let li= document.createElement("li");
+        li.textContent= food;
+        list.appendChild(li);
+    });
+
+    recommendation.appendChild(list);
+
+} else{
+    recommendation.textContent= "Calculate your BMI to see recommended foods.";
+}

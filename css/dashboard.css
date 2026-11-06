@@ -203,6 +203,24 @@ body{
     margin-bottom:1.5rem;
 }
 
+/* ===== FOOD RECOMMENDATION ===== */
+.recommendation{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+    margin-bottom:20px;
+}
+
+.recommendation h3{
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+.recommendation ul{
+    margin-left:20px;
+    line-height:1.7;
+}
 
 /*footer css */
 footer{
