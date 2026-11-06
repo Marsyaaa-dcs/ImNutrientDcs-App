@@ -6,6 +6,7 @@ function createWindow() {
     height: 600
   });
 
+  //as first page
   win.loadFile('frontpage.html')
 
   win.webContents.openDevTools();

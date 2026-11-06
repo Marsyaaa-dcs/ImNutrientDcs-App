@@ -25,10 +25,10 @@ function toggleFavorite(){
     }
 
     if(isSaved(currentFood.description)){
-        // REMOVE
+        // REMOVE STARRED FOODS
         favorites= favorites.filter(item => item.description !== currentFood.description);
     } else{
-        // SAVE
+        // SAVE STARRED FOODS
         favorites.push(currentFood);
     }
 
