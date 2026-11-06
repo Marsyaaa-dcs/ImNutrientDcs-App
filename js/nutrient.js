@@ -1,9 +1,5 @@
 //  NUTRIENT CHECKER  //
 
-//  API KEYS
-let usdaKey= "";       // USDA FoodData Central key
-let giphyKey= "";      // Giphy API key
-
 //  LOAD SAVED FOODS
 let favorites= JSON.parse(localStorage.getItem("favorites")) || [];
 
