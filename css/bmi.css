@@ -1,0 +1,241 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    text-align:center;
+    padding:80px;
+
+    background-color:#e3f2fd;                 /* fallback if the image is missing */
+    background-image:url('../images/boxbackground.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;                    /* fills the whole window */
+    background-position:center;
+    background-attachment:fixed;              /* image stays still while scrolling */
+}
+
+h1{
+    color:#142c14;
+    margin-bottom:40px;
+}
+
+
+::-webkit-scrollbar{
+    display:none;
+}
+
+/* Form card */
+.form-card{
+    max-width:420px;
+    margin:20px auto;
+    padding:25px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+    text-align:left;
+}
+
+.form-card label{
+    display:block;
+    margin-bottom:15px;
+    font-weight:bold;
+    color:#142c14;
+}
+
+.form-card input,
+.form-card select{
+    display:block;
+    width:100%;
+    margin-top:6px;
+    padding:10px 12px;
+    font-size:16px;
+    font-family:Arial, sans-serif;
+    border:2px solid #c5e1b5;
+    border-radius:8px;
+    background:#fafafa;
+    outline:none;
+}
+
+.form-card input:focus,
+.form-card select:focus{
+    border-color:#2e7d32;
+}
+
+/* Retro bevelled button */
+button{
+    width:400px;
+    margin:10px 0 0 0;
+    padding:10px 30px;
+    font-family:Arial, sans-serif;
+    font-size:16px;
+    color:#142c14;
+    background:#B2BD47;
+    border:3px solid #142c14;
+    border-radius:0;
+    cursor:pointer;
+    box-shadow:
+        inset 2px 2px 0 #dcdcdc,
+        inset -2px -2px 0 #25344f;
+}
+
+button:hover{
+    background:#B2BD47;
+}
+
+button:active{
+    box-shadow:
+        inset 2px 2px 0 #839958,
+        inset -2px -2px 0 #dcdcdc;
+    padding:9px 29px 7px 31px;
+}
+
+/* Result cards */
+.result{
+    max-width:420px;
+    margin:20px auto;
+    text-align:left;
+}
+
+.result p{
+    margin-bottom:10px;
+    padding:12px 16px;
+    background:white;
+    border-left:5px solid #2e7d32;
+    border-radius:8px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+    color:#2e7d32;
+    font-size:18px;
+}
+
+.result-card{
+    margin-top: 20px;
+}
+
+.bmi-notification{
+    background: #ffffff;
+    border: 2px solid #444;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+    animation: popup 0.3s ease;
+}
+
+.bmi-notification p{
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+#continueBtn{
+    display: block;
+    margin: 15px auto;
+    padding: 12px 20px;
+
+    background: #a9b63f;
+    color: black;
+
+    border: none;
+    cursor: pointer;
+
+    font-size: 18px;
+    width: 250px;
+}
+
+#continueBtn:hover{
+    background: #93a130;
+}
+
+/* ===== STAR BUTTON ===== */
+.star-btn{
+    display:block;
+    margin:0 auto 10px;
+    background:none;
+    border:none;
+    font-size:2.2rem;
+    color:#f5b301;                /* gold */
+    cursor:pointer;
+    transition:transform 0.2s ease;
+}
+
+.star-btn:hover{
+    transform:scale(1.2);
+}
+
+/* ===== SAVED FOODS LIST ===== */
+.fav-title{
+    text-align:center;
+    margin:40px 0 15px;
+}
+
+.favorites{
+    max-width:520px;
+    margin:0 auto;
+    text-align:center;
+    color:#444;
+}
+
+.fav-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:white;
+    padding:10px 15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.fav-name{
+    flex:1;
+    text-align:left;
+    background:none;
+    border:none;
+    font-size:1rem;
+    font-weight:bold;
+    color:#2e7d32;
+    cursor:pointer;
+}
+
+.fav-name:hover{
+    text-decoration:underline;
+}
+
+.fav-info{
+    color:#666;
+    font-size:0.9rem;
+}
+
+.fav-remove{
+    background:none;
+    border:none;
+    color:#b00020;
+    font-size:1.1rem;
+    cursor:pointer;
+}
+
+/*footer css */
+footer{
+    text-align:center;
+    padding:20px;
+    background:var(--primary);
+    color:var(--on-primary);
+    font-size:0.9rem;
+}
+
+@media (max-width:600px){
+    .showcase-top{
+        padding:15px 20px;
+    }
+
+    .showcase-content h1{
+        font-size:1.8rem;
+    }
+}

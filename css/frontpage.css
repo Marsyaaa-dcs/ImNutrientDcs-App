@@ -1,0 +1,194 @@
+/* ==========================================
+   INDEX.CSS (FRONT PAGE)
+   ========================================== */
+
+
+/* ===== 0. COLOR PALETTE (change colors here only) ===== */
+:root{
+
+    /* --- main colors --- */
+    --primary:#0C3C24;        /* top bar, footer, card headings (dark green) */
+    --secondary:#808847;      /* small button hover, card top line (olive) */
+    --accent:#F1D2A1;         /* small button background (peach) */
+
+    /* --- text colors --- */
+    --text:#0C3C24;           /* body text (dark green) */
+    --on-primary:#e2f4d8;     /* text on top bar and footer (peach) */
+
+    /* --- hero section --- */
+    --hero-from:#97ce28;      /* gradient start (lime green) */
+    --hero-to:#2B4C59;        /* gradient end (slate blue) */
+    --hero-text:#eee25e;      /* heading and tagline (yellow) */
+
+    /* --- big button --- */
+    --cta:#fff349;            /* background (bright yellow) */
+    --cta-hover:#668b2e;      /* hover (green) */
+    --on-cta:#134214;         /* button text (peach) */
+
+    /* --- page and cards --- */
+    --bg:#F6E7CC;             /* page background (light peach) */
+    --card:#FFF6E6;           /* card background (cream) */
+}
+
+
+/* ===== 1. RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* ===== 2. PAGE BACKGROUND & FONT ===== */
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;            /* stack: top bar, hero, cards, footer */
+}
+
+/* hide scrollbars (scrolling still works) */
+::-webkit-scrollbar{
+    display:none;
+}
+
+
+/* ===== 3. TOP BAR ===== */
+.showcase-top{
+    display:flex;
+    justify-content:space-between;    /* logo left, button right */
+    align-items:center;
+    padding:15px 40px;
+    background:var(--primary);
+    color:var(--on-primary);
+}
+
+/* logo group (image + name) */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:1.4rem;
+    font-weight:bold;
+}
+
+/* small logo image in the top bar */
+.logo img{
+    height:40px;
+    width:auto;                       /* keeps the original proportions */
+}
+
+
+/* ===== 4. BUTTONS ===== */
+/* base style shared by all buttons */
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    font-weight:bold;
+    transition:background 0.3s ease, color 0.3s ease;
+}
+
+/* small rounded button (top bar) */
+.btn-rounded{
+    background:var(--accent);
+    color:var(--primary);
+    padding:8px 22px;
+    border-radius:20px;
+}
+
+.btn-rounded:hover{
+    background:var(--secondary);
+}
+
+/* big call-to-action button (hero) */
+.btn-xl{
+    background:var(--cta);
+    color:var(--on-cta);
+    padding:14px 40px;
+    border-radius:10px;
+    font-size:1.2rem;
+}
+
+.btn-xl:hover{
+    background:var(--cta-hover);
+}
+
+
+/* ===== 5. HERO SECTION ===== */
+.showcase-content{
+    text-align:center;
+    padding:60px 20px;
+    background:linear-gradient(135deg, var(--hero-from), var(--hero-to));
+    color:var(--hero-text);
+}
+
+/* big logo image in the hero */
+.showcase-content img{
+    height:120px;
+    width:auto;
+    margin-bottom:15px;
+}
+
+/* main heading */
+.showcase-content h1{
+    font-size:2.4rem;
+    margin-bottom:12px;
+}
+
+/* tagline under the heading */
+.showcase-content p{
+    max-width:520px;
+    margin:0 auto 28px;
+    font-size:1.1rem;
+}
+
+
+/* ===== 6. HIGHLIGHT CARDS (3 feature boxes) ===== */
+.highlights{
+    display:flex;
+    flex-wrap:wrap;                   /* cards drop to a new row when narrow */
+    gap:20px;
+    justify-content:center;
+    padding:40px 20px 60px;
+    flex:1;                           /* pushes the footer to the bottom */
+}
+
+.highlight-card{
+    background:var(--card);
+    padding:25px;
+    flex:1 1 220px;
+    max-width:300px;
+    border-radius:10px;
+    border-top:4px solid var(--secondary);   /* colored accent line */
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.highlight-card h3{
+    color:var(--primary);
+    margin-bottom:10px;
+}
+
+
+/* ===== 7. FOOTER ===== */
+footer{
+    text-align:center;
+    padding:20px;
+    background:var(--primary);
+    color:var(--on-primary);
+    font-size:0.95rem;
+    font-weight:600; 
+}
+
+
+/* ===== 8. SMALL SCREENS ===== */
+@media (max-width:600px){
+    .showcase-top{
+        padding:15px 20px;
+    }
+
+    .showcase-content h1{
+        font-size:1.8rem;
+    }
+}

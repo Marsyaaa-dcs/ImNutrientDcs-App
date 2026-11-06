@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; 
+    script-src 'self'; connect-src 'self' https://api.nal.usda.gov https://api.giphy.com; img-src 'self' 
+    data: https://*.giphy.com">
+    <title>Nutrient Checker</title>
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+
+    <h1>Nutrient Checker</h1>
+    <h2>Search a food to see its nutrients (per 100 g)</h2>
+
+    <div class="search-bar">
+        <input type="text" id="food" placeholder="e.g. broccoli">
+        <button type="button" id="searchBtn" aria-label="Search">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="10" cy="10" r="6.5"/>
+                <line x1="15" y1="15" x2="21" y2="21"/>
+            </svg>
+        </button>
+    </div>
+
+    <div id="result" class="result"></div>
+
+    <div id="result" class="result"></div>
+
+    <footer>
+        <p>&copy; 2026 ImNutrientDcs App. All rights reserved.</p>
+    </footer>
+
+    <<script src="js/config.js"></script>
+    <script src="js/nutrient.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+    <title>Meal Tracker</title>
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+
+    <div class="page">
+
+        <h1>Meal Tracker</h1>
+        <h2>Add the calories of each meal you eat</h2>
+
+        
+        <!-- progress -->
+        <p id="calorieCount" class="count">0 / 0 kcal</p>
+        <p id="remaining" class="remaining"></p>
+        
+        <!-- pill bar: input + add button -->
+        <div class="search-bar">
+            <input type="number" id="mealCalories" placeholder="e.g. 450" min="0">
+            <button type="button" id="addBtn" title="Add meal">+</button>
+        </div>
+
+        <!-- small buttons -->
+        <div class="actions">
+            <button type="button" id="removeBtn">Undo Last</button>
+            <button type="button" id="resetBtn">Reset</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ImNutrientDcs App. All rights reserved.</p>
+    </footer>
+
+    <script src="js/meal.js"></script>
+
+</body>
+</html>

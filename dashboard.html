@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- For content security policy protrction-->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+
+    <title>ImNutrient App</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>ImNutrient</h2>
+
+        <!-- go to main page/ dashboard-->
+        <a href="home.html" target="contentFrame">Dashboard</a>
+
+        <!-- other features-->
+         <a href="nutrient.html" target="contentFrame">Nutrition Checker</a>
+        <a href="saved.html" target="contentFrame">Saved Foods</a>
+        <a href="recipe.html" target="contentFrame">Recipe Suggestion</a>
+                <a href="meal.html" target="contentFrame">Meal Tracker</a>
+        <a href="water.html" target="contentFrame">Water Tracker</a>
+        <a href="html/bmi.html" target="contentFrame">Profile</a>
+
+        <!-- logout option-->
+         <a href="html/frontpage.html" target="_top">Logout</a>
+    </div>
+
+
+    <div class="frame-area">
+        <header class="app-header">
+            <!-- banner-->
+            <img src="images/banner.png" alt="banner">
+        </header>
+        <iframe name="contentFrame" src="home.html"></iframe>
+    </div>
+
+
+</body>
+</html> 

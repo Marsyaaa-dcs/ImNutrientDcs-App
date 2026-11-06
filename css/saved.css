@@ -1,0 +1,119 @@
+/* ==========================================
+   SAVED.CSS (SAVED FOODS)
+   ========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+    font-family:Arial, sans-serif;
+    text-align:center;
+    padding:80px;
+
+    background-color:#e3f2fd;                 /* fallback if the image is missing */
+    background-image:url('../images/boxbackground.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;                    /* fills the whole window */
+    background-position:center;
+    background-attachment:fixed;              /* image stays still while scrolling */
+}
+
+
+.page{
+    max-width:640px;
+    margin:0 auto;
+    padding:50px 20px;
+    text-align:center;
+}
+
+.page h1{
+    font-size:2.2rem;
+    color:#1b3a1b;
+    margin-bottom:10px;
+}
+
+.page h2{
+    font-size:1.2rem;
+    color:#444;
+    margin-bottom:30px;
+}
+
+/* list of cards, with space between them */
+.favorites{
+    display:flex;
+    flex-direction:column;
+    gap:20px;                          /* space between cards */
+    color:#444;
+}
+
+/* one saved food */
+.page .fav-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:left;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.page .fav-card h3{
+    color:#2e7d32;
+    margin-bottom:10px;                /* space under the name */
+}
+
+.page .fav-card p{
+    color:#555;
+    font-size:0.95rem;
+    line-height:1.5;
+    margin-bottom:16px;                /* space above the buttons */
+}
+
+/* View + Remove side by side */
+.page .fav-actions{
+    display:flex;
+    gap:10px;                          /* space between the two buttons */
+}
+
+.page .fav-actions button{
+    width:auto;                        /* cancels any full-width button rule */
+    flex:1;
+    padding:10px 20px;
+    border:2px solid #2e7d32;
+    background:white;
+    color:#2e7d32;
+    font-weight:bold;
+    border-radius:20px;
+    cursor:pointer;
+    transition:background 0.3s ease, color 0.3s ease;
+}
+
+.page .fav-actions button:hover{
+    background:#2e7d32;
+    color:white;
+}
+
+.page .fav-actions .remove{
+    border-color:#b00020;
+    color:#b00020;
+}
+
+.page .fav-actions .remove:hover{
+    background:#b00020;
+    color:white;
+}
+
+/* Clear All */
+.page .clear-btn{
+    width:auto;
+    margin-top:25px;                   /* space above Clear All */
+    padding:10px 30px;
+    border:none;
+    background:#b00020;
+    color:white;
+    font-weight:bold;
+    border-radius:20px;
+    cursor:pointer;
+}

@@ -1,0 +1,224 @@
+/* ==========================================
+   DASHBOARD.CSS
+   ========================================== */
+
+/* ===== 1. RESET: remove default spacing, include padding in width ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ===== 2. PAGE BACKGROUND & FONT ===== */
+body{
+    background-image: url('images/bluebackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display:flex;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* from new CSS */
+}
+*/
+
+body{
+    font-family:Arial, sans-serif;
+    text-align:center;
+    padding:80px;
+
+    background-color:#e3f2fd;                 /* fallback if the image is missing */
+    background-image:url('../images/boxbackground.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;                    /* fills the whole window */
+    background-position:center;
+    background-attachment:fixed;              /* image stays still while scrolling */
+}
+
+/* hide scrollbars (scrolling still works) */
+::-webkit-scrollbar{
+    display:none;
+}
+
+
+/* ===== 3. SIDEBAR (left menu) ===== */
+.sidebar{
+    width:200px;
+    height:100vh;
+    background:#2e7d32;      /* green. For the blue look use: linear-gradient(180deg, #1e3c72, #2a5298) */
+    color:white;
+    padding:20px;
+}
+
+/* sidebar title (ImNutrient) */
+.sidebar h2{
+    font-size:1.4rem;        /* from new CSS */
+    margin-bottom:2rem;      /* from new CSS */
+    text-align:center;       /* from new CSS */
+    font-weight:bold;        /* from new CSS */
+}
+
+/* sidebar links */
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:5px;
+    transition:background 0.3s ease;   /* smooth hover, from new CSS */
+}
+
+/* sidebar link on hover */
+.sidebar a:hover{
+    background:#43a047;
+}
+
+
+/* ===== 4. FRAME AREA (header image + iframe on the right) ===== */
+.frame-area{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* header image on top */
+.app-header img{
+    display:block;
+    width:100%;
+    height:200px;
+    object-fit:cover;        /* crops instead of stretching */
+}
+
+/* the iframe that loads each page */
+.frame-area iframe{
+    flex:1;                  /* fills the space left under the header */
+    width:100%;
+    min-height:0;
+    border:none;
+}
+
+
+/* ===== 5. HOME PAGE CONTENT (inside the iframe) ===== */
+.content{
+    flex:1;
+    padding:2rem;            /* from new CSS */
+    background:#f5f5f5;
+}
+
+/* page title (Dashboard) */
+.content h1{
+    font-size:1.8rem;        /* from new CSS */
+    color:#2e7d32;           /* green to match theme. New CSS used blue #2a5298 */
+    margin-bottom:1rem;      /* from new CSS */
+}
+
+
+/* ===== 6. CARDS (BMI, Calories, Water...) ===== */
+.cards{
+    display:flex;
+    flex-wrap:wrap;          /* cards drop to a new row when the window is narrow */
+    gap:20px;
+    margin:20px 0;
+}
+
+.card{
+    background:
+        linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)),   /* white tint over the image */
+        url('images/boxbackground.jpg') center / cover no-repeat;
+    padding:20px;
+    flex:1 1 180px;
+    max-width:260px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);   /* softer shadow, from new CSS */
+}
+
+/* big number inside the card */
+.card p{
+    font-size:24px;
+    color:#2e7d32;
+    margin-top:10px;
+}
+
+
+/* ===== 7. OPTIONAL: ORIGINAL .dashboard-* STYLES =====
+   Not used by your current HTML. They only apply if you add
+   these classes. Safe to delete. */
+
+/* page wrapper */
+.dashboard{
+    display:flex;
+    min-height:100vh;
+    background:#f4f6f9;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* blue gradient sidebar */
+.dashboard-sidebar{
+    width:200px;
+    background:linear-gradient(180deg, #1e3c72, #2a5298);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    padding:1.5rem 1rem;
+}
+
+.dashboard-sidebar h2{
+    font-size:1.4rem;
+    margin-bottom:2rem;
+    text-align:center;
+    font-weight:bold;
+}
+
+.dashboard-sidebar a{
+    color:#fff;
+    text-decoration:none;
+    padding:0.8rem 1rem;
+    border-radius:6px;
+    margin-bottom:0.5rem;
+    transition:background 0.3s ease;
+}
+
+.dashboard-sidebar a:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+/* main area */
+.dashboard-content{
+    flex:1;
+    padding:2rem;
+}
+
+.dashboard-content h1{
+    font-size:1.8rem;
+    color:#2a5298;
+    margin-bottom:1rem;
+}
+
+/* white card */
+.dashboard-card{
+    background:#fff;
+    border-radius:10px;
+    padding:1.5rem;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom:1.5rem;
+}
+
+
+/*footer css */
+footer{
+    text-align:center;
+    padding:20px;
+    background:var(--primary);
+    color:var(--on-primary);
+    font-size:0.9rem;
+}
+
+@media (max-width:600px){
+    .showcase-top{
+        padding:15px 20px;
+    }
+
+    .showcase-content h1{
+        font-size:1.8rem;
+    }
+}

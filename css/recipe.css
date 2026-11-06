@@ -1,0 +1,107 @@
+/* css/recipes.css - extra styles for recipes.html
+   (font, background, headings and buttons come from pages.css) */
+
+/* centered column, same as the other pages */
+body{
+    font-family:Arial, sans-serif;
+    text-align:center;
+    padding:80px;
+
+    background-color:#e3f2fd;                 /* fallback if the image is missing */
+    background-image:url('../images/boxbackground.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;                    /* fills the whole window */
+    background-position:center;
+    background-attachment:fixed;              /* image stays still while scrolling */
+}
+
+
+.page{
+    max-width:900px;
+    margin:0 auto;
+}
+
+/* goal line under the title */
+#goalText{
+    color:#134214;
+    margin:10px 0;
+}
+
+.status{
+    color:#142c14;
+    margin-bottom:25px;
+}
+
+/* ===== RECIPE GRID ===== */
+.recipes{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    gap:20px;
+    text-align:left;
+}
+
+/* same look as .card in pages.css */
+.recipe-card{
+    position:relative;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.recipe-card img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.recipe-card h3{
+    color:#142c14;
+    margin-bottom:6px;
+}
+
+.uses{
+    color:#0d482e;
+    font-size:1.00rem;
+    margin-bottom:12px;
+}
+
+/* "Fits your goal" label on top of the picture */
+.badge{
+    position:absolute;
+    top:25px;
+    left:25px;
+    background:#142c14;
+    color:#B2BD47;
+    font-size:0.75rem;
+    font-weight:bold;
+    padding:4px 10px;
+    border-radius:12px;
+}
+
+/* retro button from pages.css, made full width inside the card */
+.recipe-card button{
+    display:block;
+    width:100%;
+    margin:10px 0 0;
+}
+
+/* ===== RECIPE DETAILS (ingredients + steps) ===== */
+.details{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:2px solid #c5e1b5;
+    font-size:0.9rem;
+    color:#142c14;
+}
+
+.details ul{
+    margin:0 0 10px 20px;
+}
+
+.steps{
+    line-height:1.5;
+    white-space:pre-line;             /* keeps the line breaks from the recipe */
+}
