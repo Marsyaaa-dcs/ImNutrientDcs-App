@@ -1,103 +1,131 @@
-//  DASHBOARD  //
+// DASHBOARD //
 
-//  LOAD SAVED DATA
-let savedname = localStorage.getItem("name");
-let savedBMI= localStorage.getItem("bmi");
-let savedCategory= localStorage.getItem("category");
-let savedCalories= localStorage.getItem("calories");
-let savedGoal= localStorage.getItem("goal");
-let savedWater= localStorage.getItem("water");
+//LOAD DATA FROM LOCAL STORAGE
+let savedName = localStorage.getItem("name");
+let savedBMI = localStorage.getItem("bmi");
+let savedCategory = localStorage.getItem("category");
+let savedGoal = localStorage.getItem("goal");
+let savedWater = localStorage.getItem("water");
 
-//  user name //
-let name = localStorage.getItem("name");
-
-document.getElementById("welcomeText")
-.textContent = `Welcome back, ${name}! 👋`;
-
-//  BMI
-if(savedBMI !== null){
-    document.getElementById("bmi").textContent= savedBMI;
-} else{
-    document.getElementById("bmi").textContent= "0";
-}
-
-//  CATEGORY
-if(savedCategory !== null){
-    document.getElementById("category").textContent= savedCategory;
-}
-
-//  CALORIES
-//  CALORIES (eaten / Target )
-let eaten= Number(localStorage.getItem("caloriesEaten")) || 0;
-let target= Number(localStorage.getItem("calories")) || 0;
-
-document.getElementById("calories").textContent= `${eaten} / ${target} kcal`;
-
-//  GOAL
-if(savedGoal !== null){
-    document.getElementById("goal").textContent= savedGoal;
-}
+let eaten = Number(localStorage.getItem("caloriesEaten")) || 0;
+let target = Number(localStorage.getItem("calories")) || 0;
 
 
-// CHECK IF USER HAS CALCULATED BMI
-if (!localStorage.getItem("bmi")) {
+// VALIDATE USER PROFILE
+if (!savedBMI) {
     alert("Please calculate your BMI first.");
     window.location.href = "bmi.html";
 }
 
-// DISPLAY DATA
-const bmi = localStorage.getItem("bmi");
-const category = localStorage.getItem("category");
-const calories = localStorage.getItem("calories");
-const goal = localStorage.getItem("goal");
 
-document.getElementById("bmi").textContent = bmi;
-document.getElementById("category").textContent = category;
-document.getElementById("calories").textContent = calories + " kcal";
-document.getElementById("goal").textContent = goal;
+// DISPLAY USER INFORMATION
+let welcomeText =
+"Welcome back, " + savedName + "! 👋";
+
+document.getElementById("welcomeText").textContent =
+welcomeText;
 
 
+// DISPLAY BMI INFORMATION
+let bmiText =
+savedBMI || "0";
 
-//  WATER
-if(savedWater !== null){
-    document.getElementById("water").textContent= savedWater + " / 8";
-} else{
-    document.getElementById("water").textContent= "0 / 8";
-}
+document.getElementById("bmi").textContent =
+bmiText;
 
-//  RECOMMENDATION  //
+let categoryText =
+savedCategory || "-";
 
-let recommendation= document.getElementById("recommendation");
+document.getElementById("category").textContent =
+categoryText;
 
-//  FOOD LISTS FOR EACH BMI CATEGORY
-let foodLists= {
-    Underweight: ["Chicken Breast", "Eggs", "Milk", "Peanut Butter", "Rice"],
-    Normal: ["Vegetables", "Fruits", "Whole Grains", "Fish", "Lean Meat"],
-    Overweight: ["Salads", "Oatmeal", "Greek Yogurt", "Chicken Breast", "Vegetables"]
+
+// DISPLAY CALORIE INFORMATION
+let calorieText =
+eaten + " / " + target + " kcal";
+
+document.getElementById("calories").textContent =
+calorieText;
+
+
+// DISPLAY GOAL INFORMATION
+let goalText =
+savedGoal || "-";
+
+document.getElementById("goal").textContent =
+goalText;
+
+
+// DISPLAY WATER TRACKER
+let waterText =
+(savedWater || 0) + " / 8";
+
+document.getElementById("water").textContent =
+waterText;
+
+
+
+// GENERATE FOOD RECOMMENDATIONS
+// Object containing food recommendations
+// according to BMI category
+
+let foodLists = {
+
+    Underweight: [
+        "Chicken Breast",
+        "Eggs",
+        "Milk",
+        "Peanut Butter",
+        "Rice"
+    ],
+
+    Normal: [
+        "Vegetables",
+        "Fruits",
+        "Whole Grains",
+        "Fish",
+        "Lean Meat"
+    ],
+
+    Overweight: [
+        "Salads",
+        "Oatmeal",
+        "Greek Yogurt",
+        "Chicken Breast",
+        "Vegetables"
+    ],
+
+    Obese: [
+        "Fish",
+        "Egg",
+        "Greek Yogurt",
+        "Chicken Breast",
+        "Vegetables",
+        "Brown Rice"
+    ]
 };
 
-//  OBESE USES THE SAME LIST AS OVERWEIGHT
-foodLists.Obese= foodLists.Overweight;
 
-//  SHOW RECOMMENDATION
-if(savedCategory !== null && foodLists[savedCategory]){
+// DISPLAY RECOMMENDATIONS
+let recommendation =
+document.getElementById("recommendation");
 
-    recommendation.innerHTML= "";
+if (savedCategory && foodLists[savedCategory]) {
 
-    let title= document.createElement("h3");
-    title.textContent= "Recommended Foods";
-    recommendation.appendChild(title);
+    let foods = "";
 
-    let list= document.createElement("ul");
+    // LOOP THROUGH RECOMMENDED FOODS
+    for (let i = 0; i < foodLists[savedCategory].length; i++) {
 
-    foodLists[savedCategory].forEach(food => {
-        let li= document.createElement("li");
-        li.textContent= food;
-        list.appendChild(li);
-    });
+        foods +="<li>" + foodLists[savedCategory][i] + "</li>"   
+    ;}
 
-    recommendation.appendChild(list);
+    recommendation.innerHTML =
+    "<h3>Recommended Foods</h3>" +
+    "<ul>" + foods + "</ul>";
 
-} else{
-    recommendation.textContent= "Calculate your BMI to see recommended foods.";
+}
+else {
+    recommendation.textContent =
+    "Calculate your BMI to see recommended foods.";
 }

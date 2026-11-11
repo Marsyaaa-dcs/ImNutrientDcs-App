@@ -1,12 +1,9 @@
-//  SAVED FOODS  //
-
 //  LOAD SAVED FOODS
 let favorites= JSON.parse(localStorage.getItem("favorites")) || [];
 
 
 //  SHOW SAVED FOODS
 function showFavorites(){
-
     let box= document.getElementById("favorites");
     box.innerHTML= "";
 
@@ -73,7 +70,6 @@ function showFavorites(){
 
 //  CLEAR ALL
 function clearAll(){
-
     if(confirm("Remove all saved foods?")){
         favorites= [];
         localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -82,7 +78,6 @@ function clearAll(){
 }
 
 
-//  MAIN  //
+//  CLEAR BUTTON //
 document.getElementById("clearBtn").addEventListener("click", clearAll);
-
 showFavorites();

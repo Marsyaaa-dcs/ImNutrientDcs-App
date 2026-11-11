@@ -1,6 +1,5 @@
 //  BMI & CALORIE CALCULATOR  //
 
-//  CALCULATE
 function calculateHealth(){
 
     // GET INPUT
@@ -19,6 +18,8 @@ function calculateHealth(){
 
     // CALCULATE BMI (CM TO M)
     let height= heightCm / 100;
+
+    //CALCULATE BMI (Body Mass Index)
     let bmi= weight / (height * height);
 
     // CHECK BMI CATEGORY
@@ -28,27 +29,36 @@ function calculateHealth(){
 
     if(bmi < 18.5){
         category= "Underweight";
-        adjustment= 500;
+        adjustment= +500;
         goal= "Gain weight (+500 kcal)";
+
     } else if(bmi < 25){
         category= "Normal";
         adjustment= 0;
         goal= "Maintain weight";
+
     } else if(bmi < 30){
         category= "Overweight";
         adjustment= -500;
         goal= "Lose weight (-500 kcal)";
+
     } else{
         category= "Obese";
         adjustment= -500;
         goal= "Lose weight (-500 kcal)";
     }
 
-    // CALCULATE BMR
+    // CALCULATE BMR(Body Metabolic Rate)
+    //Using Mifflin St Jeor Formula
     let bmr= 0;
 
+    //MALE
+    // 10(weight) + 6.25(height) - 5(age) + 5
     if(gender === "male"){
         bmr= (10 * weight) + (6.25 * heightCm) - (5 * age) + 5;
+
+    // FEMaLE USER
+    // 10(weight) + 6.25(height) - 5(age) - 161
     } else{
         bmr= (10 * weight) + (6.25 * heightCm) - (5 * age) - 161;
     }
@@ -77,5 +87,5 @@ function calculateHealth(){
 }
 
 
-//  MAIN  //
+// CALCULATE BUTTON  //
 document.getElementById("calcBtn").addEventListener("click", calculateHealth);

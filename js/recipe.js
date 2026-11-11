@@ -1,18 +1,15 @@
-//  RECIPE SUGGESTIONS  //
-
-//  LOAD SAVED DATA
+//  LOAD SAVED DATA FROM LOCAL STORAGE
 let favorites= JSON.parse(localStorage.getItem("favorites")) || [];
 let bmiCategory= localStorage.getItem("category");
 let goal= localStorage.getItem("goal");
-
+//TheMealDB API (fetching recipes)
 let baseUrl= "https://www.themealdb.com/api/json/v1/1/";
 
 
 //  GET RECIPE TYPES FOR THE BMI GOAL
 function getPreferredCategories(){
-
     if(bmiCategory === "Underweight"){
-        return ["Beef", "Pasta", "Lamb", "Chicken"];
+        return ["Beef", "Pasta", "Lamb", "Chicken", "Rice"];
     } else if(bmiCategory === "Overweight" || bmiCategory === "Obese"){
         return ["Seafood", "Vegetarian", "Vegan", "Chicken"];
     }
@@ -24,76 +21,85 @@ function getPreferredCategories(){
 
 //  FETCH JSON
 async function getJSON(url){
-
+    // FETCH DATA FROM API
     let response= await fetch(url);
 
     if(!response.ok){
         throw new Error(`HTTP Error: ${response.status}`);
     }
-
     return await response.json();
 }
 
 
 //  FIND RECIPES THAT USE ONE FOOD
 async function findByIngredient(food){
-
     let words= food.toLowerCase().trim().split(/\s+/);
     let lastWord= words[words.length - 1];
 
-    // TRY: "brown_rice", THEN "rice", THEN SINGULAR OF THE LAST WORD
+    // SINGULAR OF THE LAST WORD
     let tries= [words.join("_"), lastWord, lastWord.replace(/s$/, "")];
 
+    // TRY DIFFERENT SEARCH TERMS
     for(let name of tries){
-        let data= await getJSON(baseUrl + "filter.php?i=" + encodeURIComponent(name));
+        let data= await getJSON(
+            baseUrl +
+            "filter.php?i=" +
+            encodeURIComponent(name)
+        );
 
         if(data.meals){
             return data.meals;
         }
     }
-
     return [];
 }
 
 
 //  GET IDS OF RECIPES THAT FIT THE BMI GOAL
 async function getGoalIds(){
-
     let categories= getPreferredCategories();
     let ids= new Set();
 
+    // LOOP THROUGH ALL PREFERRED CATEGORIES
     for(let category of categories){
-        let data= await getJSON(baseUrl + "filter.php?c=" + encodeURIComponent(category));
+        let data= await getJSON(
+            baseUrl +
+            "filter.php?c=" +
+            encodeURIComponent(category)
+        );
 
         if(data.meals){
-            data.meals.forEach(meal => ids.add(meal.idMeal));
+            // SAVE RECIPE ID
+            data.meals.forEach(meal =>
+                ids.add(meal.idMeal)
+            );
         }
     }
-
     return ids;
 }
 
 
-//  SHOW RECIPE CARDS
+//  SHOW RECIPE IN CARDS
 function showRecipes(list){
-
     let box= document.getElementById("recipes");
+
+    // CLEAR OLD RECIPE CARDS
     box.innerHTML= "";
 
     list.forEach(recipe => {
-
         let card= document.createElement("div");
         card.className= "recipe-card";
 
-        // PICTURE
+        // PICTURE OF DISHES
         let img= document.createElement("img");
         img.src= recipe.thumb + "/preview";
         img.alt= recipe.name;
+
         img.addEventListener("error", function(){
             img.hidden= true;
         });
 
-        // NAME
+        // NAME OF DISHES
         let title= document.createElement("h3");
         title.textContent= recipe.name;
 
@@ -102,7 +108,7 @@ function showRecipes(list){
         uses.className= "uses";
         uses.textContent= "Uses: " + recipe.matches.join(", ");
 
-        // GOAL BADGE
+        // GOAL BADGE (Normal no badge)
         let badge= document.createElement("span");
         badge.className= "badge";
 
@@ -116,27 +122,30 @@ function showRecipes(list){
         details.className= "details";
         details.hidden= true;
 
-        // VIEW BUTTON
+        // VIEW BUTTON (Recipes full details)
         let viewBtn= document.createElement("button");
         viewBtn.type= "button";
         viewBtn.textContent= "View Recipe";
+
         viewBtn.addEventListener("click", function(){
             toggleDetails(recipe.id, details, viewBtn);
         });
 
+        // ADD ALL ELEMENTS TO CARD
         card.appendChild(img);
         card.appendChild(title);
         card.appendChild(uses);
         card.appendChild(viewBtn);
         card.appendChild(details);
+
+        // ADD CARD TO PAGE
         box.appendChild(card);
     });
 }
 
 
-//  SHOW / HIDE RECIPE DETAILS
+//  AFTER CLICKED: HIDDEN RECIPE DETAILS
 async function toggleDetails(id, details, button){
-
     // HIDE IF ALREADY OPEN
     if(!details.hidden){
         details.hidden= true;
@@ -159,36 +168,39 @@ async function toggleDetails(id, details, button){
 
                 if(ingredient && ingredient.trim() !== ""){
                     let li= document.createElement("li");
-                    li.textContent= (measure || "").trim() + " " + ingredient;
+                    li.textContent= (measure || "") + ingredient;
+
                     list.appendChild(li);
                 }
             }
 
-            // STEPS RECIPES
+            // STEPS/INTRUCTION HOW TO COOK RECIPES
             let steps= document.createElement("p");
             steps.className= "steps";
             steps.textContent= meal.strInstructions;
 
+            //THE INGREDIENT IN LIST FORM
             details.appendChild(list);
+
+            //THE INTRUCTION
             details.appendChild(steps);
 
+        // ERROE
         } catch(error){
             console.error("DETAILS ERROR:", error);
             details.textContent= "Failed to load the recipe.";
-        }
-    }
-
+        }}
     details.hidden= false;
     button.textContent= "Hide Recipe";
 }
 
 
-//  LOAD RECIPES
+//  LOAD RECIPES (fetch From TheMealDB API)
 async function loadRecipes(){
-
     let status= document.getElementById("status");
     let goalText= document.getElementById("goalText");
 
+    //ERROR HANDLING
     // CHECK BMI
     if(bmiCategory === null){
         status.innerHTML= "";
@@ -202,15 +214,18 @@ async function loadRecipes(){
         return;
     }
 
-    goalText.textContent= "Your BMI: " + bmiCategory + "  |  Goal: " + goal;
+    //DOM manipulation
+    goalText.textContent= "Your BMI: " + bmiCategory + " | Goal: " + goal;
     status.textContent= "Finding recipes...";
 
     try{
         // GET RECIPES FOR EVERY STARRED FOOD, AND THE GOAL LIST
-        let lists= await Promise.all(favorites.map(item => findByIngredient(item.search)));
+        let lists=
+            await Promise.all(favorites.map(item => findByIngredient(item.search)
+            ));
+
         let goalIds= await getGoalIds();
         let noGoalFilter= getPreferredCategories().length === 0;
-
         let recipes= {};
         let missing= [];
 
@@ -222,7 +237,6 @@ async function loadRecipes(){
             }
 
             lists[index].forEach(meal => {
-
                 // ADD RECIPE THE FIRST TIME WE SEE IT
                 if(!recipes[meal.idMeal]){
                     recipes[meal.idMeal]= {
@@ -238,42 +252,39 @@ async function loadRecipes(){
             });
         });
 
-        // SORT: FITS GOAL FIRST, THEN MOST STARRED FOODS USED
+        // SORT BY FITS GOAL FIRST, THEN MOST STARRED FOODS USED
         let sorted= Object.values(recipes).sort((a, b) => {
             if(a.fits !== b.fits){
                 return a.fits ? -1 : 1;
             }
-            return b.matches.length - a.matches.length;
-        });
+                return b.matches.length - a.matches.length;
+            });
 
         // SHOW TOP 12
         showRecipes(sorted.slice(0, 12));
 
-         // STATUS MESSAGE
+        // STATUS MESSAGE
         if(sorted.length === 0){
-            // SOME STARRED FOODS HAD NO RECIPES FROM THE API
             if(missing.length > 0){
                 status.textContent= "No recipes found for: " + missing.join(", ") + ".";
 
-            // NOTHING FOUND AT ALL
-            } else{
+            } else {
                 status.textContent= "No recipes found for your starred foods.";
             }
-        } else{
+
+        } else {
             status.textContent= "Top " + Math.min(sorted.length, 12) + " recipes from your starred foods.";
 
             if(missing.length > 0){
-                status.textContent += " No recipes found for: " + missing.join(", ") + ".";
-            }
-        }
-    
-        //IF ANY ERROR OCCUR IN API
+                status.textContent +=
+                    " No recipes found for: " + missing.join(", ") + ".";
+            }}
+
+    //IF ANY ERROR OCCUR IN API
     } catch(error){
         console.error("ERROR:", error);
         status.textContent= "Failed to load recipes.";
     }
 }
-
-
 //  MAIN  //
 loadRecipes();

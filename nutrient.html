@@ -2,9 +2,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <!--BYPASS TO USED THE API -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; 
     script-src 'self'; connect-src 'self' https://api.nal.usda.gov https://api.giphy.com; img-src 'self' 
     data: https://*.giphy.com">
+
     <title>Nutrient Checker</title>
     <link rel="stylesheet" href="css/search.css">
 </head>
@@ -23,12 +25,17 @@
             </svg>
         </button>
     </div>
+    <br>
+
 
     <div id="result" class="result"></div>
+    <br>
+
 
     <footer>
         <p>&copy; 2026 ImNutrientDcs App. All rights reserved.</p>
     </footer>
+
 
     <script src="js/config.js"></script>
     <script src="js/nutrient.js"></script>

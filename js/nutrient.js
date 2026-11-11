@@ -15,16 +15,15 @@ function isSaved(description){
 
 //  SAVE / REMOVE STAR
 function toggleFavorite(){
-
     if(currentFood === null){
         return;
     }
 
     if(isSaved(currentFood.description)){
-        // REMOVE STARRED FOODS
+        // REMOVE SAVED / TARRED FOOD
         favorites= favorites.filter(item => item.description !== currentFood.description);
     } else{
-        // SAVE
+        // SAVE FOOD
         favorites.push(currentFood);
     }
 
@@ -37,7 +36,6 @@ function toggleFavorite(){
 
 //  UPDATE STAR ICON
 function updateStar(){
-
     let star= document.getElementById("starBtn");
 
     if(star === null || currentFood === null){
@@ -54,7 +52,8 @@ function updateStar(){
 }
 
 
-//  GET FOOD GIF (GIPHY)
+
+//  GET FOOD ILLUSTRATOR (GIPHY API)
 async function getFoodImage(food){
 
     // NO KEY = NO IMAGE
@@ -90,13 +89,14 @@ async function getFoodImage(food){
 }
 
 
-//  SEARCH FOOD
+//  SEARCH FOOD (by feching from APIs)
 async function searchFood(){
-
+    // GET INPUT IN THE RIGHT FILED AND REMOVE EXTRA SPACE
     let food= document.getElementById("food").value.trim();
     let result= document.getElementById("result");
 
     // CHECK INPUT
+    // if empty
     if(food === ""){
         result.textContent= "Please enter a food name.";
         return;
@@ -107,6 +107,7 @@ async function searchFood(){
 
         // GET NUTRITION AND GIF AT THE SAME TIME
         let [response, image]= await Promise.all([
+            // INFO API FROOM USDAFOOD DATA CENTER
             fetch(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(food)}&api_key=${usdaKey}`),
             getFoodImage(food)
         ]);
@@ -125,6 +126,9 @@ async function searchFood(){
 
         let foodData= data.foods[0];
 
+
+
+// WHAT BEEN FETCH FROM USDA FOOD DATA CENTER API
         let calories= "N/A";
         let protein= "N/A";
         let fat= "N/A";
@@ -143,9 +147,10 @@ async function searchFood(){
             }
         });
 
-        // REMEMBER THIS FOOD (USED BY THE STAR)
+        // REMEMBER THE FOOD FOR SAVED/STAR)
         currentFood= {
             search: food,
+            // IDEntiFied of FOOD
             description: foodData.description,
             calories: calories,
             protein: protein,
@@ -195,15 +200,18 @@ async function searchFood(){
 }
 
 
-//  MAIN  //
+
+// search button
 document.getElementById("searchBtn").addEventListener("click", searchFood);
 
-// SEARCH WITH THE ENTER KEY TOO
-document.getElementById("food").addEventListener("keydown", function(e){
-    if(e.key === "Enter"){
+// SEARCH WITH THE ENTER KEY SHORT CUT (eg: enter)
+document.getElementById("food").addEventListener("keydown", function(myEvent){
+    if(myEvent.key === "Enter"){
         searchFood();
     }
 });
+
+
 
 // SEARCH REQUESTED FROM THE SAVED FOODS PAGE
 let pending= localStorage.getItem("pendingSearch");
