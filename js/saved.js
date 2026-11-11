@@ -16,12 +16,9 @@ function showFavorites(){
         document.getElementById("clearBtn").hidden= true;
         return;
     }
-
     document.getElementById("clearBtn").hidden= false;
 
-    favorites.forEach(item => {
-
-        let card= document.createElement("div");
+    favorites.forEach(item => {let card= document.createElement("div");
         card.className= "fav-card";
 
         // TITLE

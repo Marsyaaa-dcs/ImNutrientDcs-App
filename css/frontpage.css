@@ -1,9 +1,4 @@
-/* ==========================================
-   INDEX.CSS (FRONT PAGE)
-   ========================================== */
-
-
-/* ===== 0. COLOR PALETTE (change colors here only) ===== */
+/* COLOR PALETTE (change colors here only)*/
 :root{
 
     /* --- main colors --- */
@@ -31,7 +26,7 @@
 }
 
 
-/* ===== 1. RESET ===== */
+/* RESET  */
 *{
     margin:0;
     padding:0;
@@ -39,7 +34,7 @@
 }
 
 
-/* ===== 2. PAGE BACKGROUND & FONT ===== */
+/* PAGE BACKGROUND & FONT */
 body{
     background:var(--bg);
     color:var(--text);
@@ -55,7 +50,7 @@ body{
 }
 
 
-/* ===== 3. TOP BAR ===== */
+/* TOP BAR */
 .showcase-top{
     display:flex;
     justify-content:space-between;    /* logo left, button right */
@@ -81,7 +76,7 @@ body{
 }
 
 
-/* ===== 4. BUTTONS ===== */
+/* BUTTONS */
 /* base style shared by all buttons */
 .btn{
     display:inline-block;
@@ -116,7 +111,7 @@ body{
 }
 
 
-/* ===== 5. HERO SECTION ===== */
+/*  HERO SECTION  */
 .showcase-content{
     text-align:center;
     padding:60px 20px;
@@ -145,7 +140,7 @@ body{
 }
 
 
-/* ===== 6. HIGHLIGHT CARDS (3 feature boxes) ===== */
+/*  HIGHLIGHT CARDS (3 feature boxes) */
 .highlights{
     display:flex;
     flex-wrap:wrap;                   /* cards drop to a new row when narrow */
@@ -171,7 +166,7 @@ body{
 }
 
 
-/* ===== 7. FOOTER ===== */
+/* FOOTER */
 footer{
     text-align:center;
     padding:20px;
@@ -182,7 +177,7 @@ footer{
 }
 
 
-/* ===== 8. SMALL SCREENS ===== */
+/*  SMALL SCREENS */
 @media (max-width:600px){
     .showcase-top{
         padding:15px 20px;

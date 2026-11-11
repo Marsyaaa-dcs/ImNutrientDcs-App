@@ -1,7 +1,4 @@
-//  BMI & CALORIE CALCULATOR  //
-
 function calculateHealth(){
-
     // GET INPUT
     let name= document.getElementById("name").value.trim();
     let age= Number(document.getElementById("age").value);

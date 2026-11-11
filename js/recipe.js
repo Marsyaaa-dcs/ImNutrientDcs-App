@@ -26,6 +26,7 @@ async function getJSON(url){
     let response= await fetch(url);
 
     if(!response.ok){
+        // API FAILS
         throw new Error(`HTTP Error: ${response.status}`);
     }
     return await response.json();
@@ -34,7 +35,8 @@ async function getJSON(url){
 
 //  FIND RECIPES THAT USE ONE FOOD
 async function findByIngredient(food){
-    let words= food.toLowerCase().trim().split(/\s+/);
+    let words= food.toLowerCase().trim().split(/\s+/);  //LAST . SPLIT WORD
+    // IF ENTER KEYWORD TRY FOUND 
     let lastWord= words[words.length - 1];
 
     // SINGULAR OF THE LAST WORD
@@ -42,8 +44,7 @@ async function findByIngredient(food){
 
     // TRY DIFFERENT SEARCH TERMS
     for(let name of tries){
-        let data= await getJSON(
-            baseUrl + "filter.php?i=" + encodeURIComponent(name)
+        let data= await getJSON( baseUrl + "filter.php?i=" + encodeURIComponent(name)
         );
         if(data.meals){
             return data.meals;
@@ -61,15 +62,12 @@ async function getGoalIds(){
     // LOOP THROUGH ALL PREFERRED CATEGORIES
     for(let category of categories){
         let data= await getJSON(
-            baseUrl +
-            "filter.php?c=" +
-            encodeURIComponent(category)
+            baseUrl + "filter.php?c=" + encodeURIComponent(category)
         );
 
         if(data.meals){
             // SAVE RECIPE ID
-            data.meals.forEach(meal =>
-                ids.add(meal.idMeal)
+            data.meals.forEach(meal => ids.add(meal.idMeal)
             );
         }
     }
@@ -167,7 +165,6 @@ async function toggleDetails(id, details, button){
                 if(ingredient && ingredient.trim() !== ""){
                     let li= document.createElement("li");
                     li.textContent= (measure || "") + ingredient;
-
                     list.appendChild(li);
                 }
             }
@@ -188,6 +185,7 @@ async function toggleDetails(id, details, button){
             console.error("DETAILS ERROR:", error);
             details.textContent= "Failed to load the recipe.";
         }}
+    // FIRST CLIKED VIEW
     details.hidden= false;
     button.textContent= "Hide Recipe";
 }
@@ -212,7 +210,7 @@ async function loadRecipes(){
         return;
     }
 
-    //DOM manipulation
+    //DOM MANIPULATION
     goalText.textContent= "Your BMI: " + bmiCategory + " | Goal: " + goal;
     status.textContent= "Finding recipes...";
 
@@ -228,7 +226,6 @@ async function loadRecipes(){
         let missing= [];
 
         favorites.forEach((item, index) => {
-
             if(lists[index].length === 0){
                 missing.push(item.search);
                 return;
@@ -245,7 +242,7 @@ async function loadRecipes(){
                         fits: noGoalFilter || goalIds.has(meal.idMeal)
                     };
                 }
-
+                // SAVE MATCHING FOODS
                 recipes[meal.idMeal].matches.push(item.search);
             });
         });
@@ -265,7 +262,6 @@ async function loadRecipes(){
         if(sorted.length === 0){
             if(missing.length > 0){
                 status.textContent= "No recipes found for: " + missing.join(", ") + ".";
-
             } else {
                 status.textContent= "No recipes found for your starred foods.";
             }
@@ -284,5 +280,6 @@ async function loadRecipes(){
         status.textContent= "Failed to load recipes.";
     }
 }
+
 //  MAIN  //
 loadRecipes();

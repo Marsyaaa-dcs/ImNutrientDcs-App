@@ -46,8 +46,7 @@ h1{
     color:#142c14;
 }
 
-.form-card input,
-.form-card select{
+.form-card input,.form-card select{
     display:block;
     width:100%;
     margin-top:6px;

@@ -1,8 +1,7 @@
-//  WATER TRACKER  //
-
 //  LOAD SAVED DATA
 let water= Number(localStorage.getItem("water")) || 0;
 let maxWater= 8;
+
 
 //  ADD WATER
 function addWater(){
@@ -12,6 +11,7 @@ function addWater(){
     }
 }
 
+
 //  REMOVE WATER
 function removeWater(){
     if(water > 0){
@@ -20,11 +20,14 @@ function removeWater(){
     }
 }
 
+
 //  RESET WATER
 function resetWater(){
     water= 0;
     saveWater();
 }
+
+
 
 //  SAVE FOR DASHBOARD
 function saveWater(){
@@ -42,5 +45,4 @@ function updateDisplay(){
 document.getElementById("addBtn").addEventListener("click", addWater);
 document.getElementById("removeBtn").addEventListener("click", removeWater);
 document.getElementById("resetBtn").addEventListener("click", resetWater);
-
 updateDisplay();

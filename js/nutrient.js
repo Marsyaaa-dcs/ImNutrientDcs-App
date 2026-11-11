@@ -1,5 +1,3 @@
-//  NUTRIENT CHECKER  //
-
 //  LOAD SAVED FOODS
 let favorites= JSON.parse(localStorage.getItem("favorites")) || [];
 
@@ -125,7 +123,6 @@ async function searchFood(){
         }
 
         let foodData= data.foods[0];
-
 
 
 // WHAT BEEN FETCH FROM USDA FOOD DATA CENTER API

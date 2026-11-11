@@ -1,15 +1,11 @@
-/* ==========================================
-   DASHBOARD.CSS
-   ========================================== */
-
-/* ===== 1. RESET: remove default spacing, include padding in width ===== */
+/* ===== RESET: remove default spacing, include padding in width ===== */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-/* ===== 2. PAGE BACKGROUND & FONT ===== */
+/* =====  PAGE BACKGROUND & FONT ===== */
 body{
     background-image: url('images/bluebackground.jpg');
     background-repeat: no-repeat;
@@ -38,7 +34,7 @@ body{
 }
 
 
-/* ===== 3. SIDEBAR (left menu) ===== */
+/* =====  SIDEBAR (left menu) ===== */
 .sidebar{
     width:200px;
     height:100vh;
@@ -49,10 +45,10 @@ body{
 
 /* sidebar title (ImNutrient) */
 .sidebar h2{
-    font-size:1.4rem;        /* from new CSS */
-    margin-bottom:2rem;      /* from new CSS */
-    text-align:center;       /* from new CSS */
-    font-weight:bold;        /* from new CSS */
+    font-size:1.4rem;        
+    margin-bottom:2rem;      
+    text-align:center;       
+    font-weight:bold;        
 }
 
 /* sidebar links */
@@ -72,7 +68,7 @@ body{
 }
 
 
-/* ===== 4. FRAME AREA (header image + iframe on the right) ===== */
+/* ===== FRAME AREA (header image + iframe on the right) ===== */
 .frame-area{
     flex:1;
     display:flex;
@@ -98,7 +94,7 @@ body{
 }
 
 
-/* ===== 5. HOME PAGE CONTENT (inside the iframe) ===== */
+/* =====  HOME PAGE CONTENT (inside the iframe) ===== */
 .content{
     flex:1;
     padding:2rem;            /* from new CSS */
@@ -140,10 +136,7 @@ body{
 }
 
 
-/* ===== 7. OPTIONAL: ORIGINAL .dashboard-* STYLES =====
-   Not used by your current HTML. They only apply if you add
-   these classes. Safe to delete. */
-
+/* ===== ORIGINAL .dashboard-* STYLES ===== */
 /* page wrapper */
 .dashboard{
     display:flex;
@@ -202,6 +195,7 @@ body{
     box-shadow:0 4px 12px rgba(0,0,0,0.1);
     margin-bottom:1.5rem;
 }
+
 
 /* ===== FOOD RECOMMENDATION ===== */
 .recommendation{

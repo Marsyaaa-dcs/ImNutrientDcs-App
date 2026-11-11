@@ -1,5 +1,3 @@
-// DASHBOARD //
-
 //LOAD DATA FROM LOCAL STORAGE
 let savedName = localStorage.getItem("name");
 let savedBMI = localStorage.getItem("bmi");
@@ -9,7 +7,6 @@ let savedWater = localStorage.getItem("water");
 
 let eaten = Number(localStorage.getItem("caloriesEaten")) || 0;
 let target = Number(localStorage.getItem("calories")) || 0;
-
 
 // VALIDATE USER PROFILE
 if (!savedBMI) {

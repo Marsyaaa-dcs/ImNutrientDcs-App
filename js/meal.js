@@ -1,8 +1,7 @@
-// CALORIES TRACKER
+// CALORIES TRACKER BASED ON MEAL
 //  LOAD SAVED DATA
 let target = Number(localStorage.getItem("calories")) || 0;
 let meals = JSON.parse(localStorage.getItem("meals")) || [];
-
 
 //  ADD MEAL
 function addMeal(){
