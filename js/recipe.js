@@ -3,6 +3,7 @@ let favorites= JSON.parse(localStorage.getItem("favorites")) || [];
 let bmiCategory= localStorage.getItem("category");
 let goal= localStorage.getItem("goal");
 //TheMealDB API (fetching recipes)
+//REST API
 let baseUrl= "https://www.themealdb.com/api/json/v1/1/";
 
 
@@ -42,11 +43,8 @@ async function findByIngredient(food){
     // TRY DIFFERENT SEARCH TERMS
     for(let name of tries){
         let data= await getJSON(
-            baseUrl +
-            "filter.php?i=" +
-            encodeURIComponent(name)
+            baseUrl + "filter.php?i=" + encodeURIComponent(name)
         );
-
         if(data.meals){
             return data.meals;
         }
